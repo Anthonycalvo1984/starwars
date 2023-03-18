@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import CardPeople from "../component/cardPeople.jsx";
 import CardPlanet from "../component/cardPlanet.jsx";
+import CardVehicles from "../component/cardVehicles.jsx";
 import { todoActions } from "../store/todos";
 //React parallax
 
@@ -31,19 +32,6 @@ const StarWars = () => {
                 console.log(respuestaJson)
                 setListVehicles(respuestaJson.results)
             }
-
-            /* ({ respuestaJson, response } = await actions.useFetch("/login"))
-            if (response.ok) {
-                console.log(respuestaJson)
-                setListVehicles(respuestaJson.results)
-            }
-            if (respuestaJson.login == true) {
-                ({ respuestaJson, response } = await actions.useFetch("/saldo-de-la-cuenta"))
-                if (response.ok) {
-                    console.log(respuestaJson)
-                    setListVehicles(respuestaJson.results)
-                }
-            } */
 
         }
         //cargaDatos() //login, //consultar saldo 
@@ -74,30 +62,43 @@ const StarWars = () => {
     useEffect(() => { }, [listVehicles])
 
     return (<>
-        Soy el componente de Star wars
-
-
+        <h2>Characters</h2>
         <div>
-            <ul>
+            <ul className="d-flex">
                 {listPeople && listPeople.length > 0 ?
                     <>
                         {listPeople.map((item, index) => {
-                            return <li key={item.uid}>
+                            return <div className="p-3" key={item.uid}>
                                 <CardPeople name={item.name} uid={item.uid} />
-                            </li>
+                            </div>
                         })}
                     </> : <></>}
             </ul>
         </div>
         <br />
+        <h2>Planets</h2>
         <div>
-            <ul>
+            <ul className="d-flex">
                 {listPlanets && listPlanets.length > 0 ?
                     <>
                         {listPlanets.map((item, index) => {
-                            return <li key={item.uid}>
+                            return <div className="p-3" key={item.uid}>
                                 <CardPlanet name={item.name} uid={item.uid} />
-                            </li>
+                            </div>
+                        })}
+                    </> : <></>}
+            </ul>
+        </div>
+        <br/>
+        <h2>Vehicles</h2>
+        <div>
+            <ul className="d-flex">
+                {listVehicles && listVehicles.length > 0 ?
+                    <>
+                        {listVehicles.map((item, index) => {
+                            return <div className="p-3" key={item.uid}>
+                                <CardVehicles name={item.name} uid={item.uid} />
+                            </div>
                         })}
                     </> : <></>}
             </ul>
